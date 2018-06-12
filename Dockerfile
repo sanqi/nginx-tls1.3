@@ -10,7 +10,9 @@ RUN patch -p1 < openssl-equal-pre7_ciphers.patch
 WORKDIR /tmp
 RUN tar xzf nginx-1.15.0.tar.gz
 WORKDIR /tmp/nginx-1.15.0
-RUN ./configure --with-openssl=../openssl-OpenSSL_1_1_1-pre7 --with-openssl-opt='enable-tls13downgrade' --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module
+RUN wget https://raw.githubusercontent.com/hakasenyang/openssl-patch/master/nginx_hpack_push.patch
+RUN patch -p1 < nginx_hpack_push.patch
+RUN ./configure --with-openssl=../openssl-OpenSSL_1_1_1-pre7 --with-openssl-opt='enable-tls13downgrade' --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module --with-http_v2_hpack_enc
 RUN make
 RUN make install
 RUN rm -rf /tmp/*
