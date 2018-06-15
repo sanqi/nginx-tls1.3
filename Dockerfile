@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM golang:alpine
 ENV OPENSSL_VERSION=1_1_1-pre7
 ENV NGINX_VERSION=1.15.0
 RUN apk upgrade --update -f && apk add --no-cache wget make gcc g++ perl pcre-dev zlib-dev linux-headers
