@@ -1,6 +1,6 @@
 FROM golang:alpine
-ENV OPENSSL_VERSION=1_1_1-pre9
-ENV OPENSSL_PATCH=equal-pre9_ciphers
+ENV OPENSSL_VERSION=1_1_1
+ENV OPENSSL_PATCH=equal-1.1.1_ciphers
 ENV NGINX_VERSION=1.15.3
 RUN apk upgrade --update -f && apk add --no-cache wget make gcc g++ perl pcre-dev zlib-dev linux-headers libgd gd-dev libxslt-dev patch
 WORKDIR /tmp
