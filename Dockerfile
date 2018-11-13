@@ -1,4 +1,4 @@
-FROM golang:alpine
+FROM alpine:3.8
 ENV OPENSSL_VERSION=1_1_1
 ENV OPENSSL_PATCH=1.1.1-tls13_draft
 ENV NGINX_VERSION=1.15.6
@@ -50,7 +50,7 @@ ARG NGINX_BUILD_CONFIG="\
         --with-http_v2_module \
     "
 
-RUN apk upgrade --update -f && apk add --no-cache curl wget make py-setuptools gettext-dev gperf gcc g++ perl pcre-dev zlib-dev linux-headers libgd gd-dev libxslt-dev patch apr-dev apr-util-dev build-base geoip-dev git gnupg icu-dev  libjpeg-turbo-dev libpng-dev libxslt-dev linux-headers pcre-dev tar  zlib-dev
+RUN apk upgrade --update -f && apk add --no-cache apache2-dev curl wget make py-setuptools gettext-dev gperf gcc g++ perl pcre-dev zlib-dev linux-headers libgd gd-dev libxslt-dev patch apr-dev apr-util-dev build-base geoip-dev git gnupg icu-dev  libjpeg-turbo-dev libpng-dev libxslt-dev linux-headers pcre-dev tar  zlib-dev
 WORKDIR /usr/src
 
 RUN git clone https://github.com/apache/incubator-pagespeed-ngx.git \
