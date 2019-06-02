@@ -1,6 +1,6 @@
 FROM golang:alpine
 ENV OPENSSL_VERSION=1_1_1c
-ENV OPENSSL_PATCH=1.1.1c-chacha_draft
+ENV OPENSSL_PATCH=1.1.1c-prioritize_chacha_draft
 ENV NGINX_VERSION=1.17.0
 RUN apk upgrade --update -f && apk add --no-cache wget make gcc g++ perl pcre-dev zlib-dev linux-headers libgd gd-dev libxslt-dev patch libjpeg-turbo-dev libpng-dev 
 WORKDIR /tmp
