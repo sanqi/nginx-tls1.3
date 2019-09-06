@@ -1,8 +1,8 @@
 FROM golang:alpine
 ENV OPENSSL_VERSION=1_1_1c
 ENV OPENSSL_PATCH=1.1.1c-prioritize_chacha_draft
-ENV NGINX_VERSION=1.17.2
-RUN apk upgrade --update -f && apk add --no-cache wget make gcc g++ perl pcre-dev zlib-dev linux-headers libgd gd-dev libxslt-dev patch libjpeg-turbo-dev libpng-dev 
+ENV NGINX_VERSION=1.17.3
+RUN apk upgrade --update -f && apk add --no-cache wget make gcc g++ perl pcre-dev zlib-dev linux-headers libgd gd-dev libxslt-dev patch libjpeg-turbo-dev libpng-dev curl 
 WORKDIR /tmp
 RUN wget https://github.com/openssl/openssl/archive/OpenSSL_$OPENSSL_VERSION.tar.gz && \
     tar xzf OpenSSL_$OPENSSL_VERSION.tar.gz && \
@@ -18,6 +18,7 @@ RUN wget https://github.com/openssl/openssl/archive/OpenSSL_$OPENSSL_VERSION.tar
 #    patch -p1 < nginx_hpack_remove_server_header_$NGINX_VERSION.patch  && \
 #    wget https://raw.githubusercontent.com/hakasenyang/openssl-patch/master/nginx_openssl-1.1.x_renegotiation_bugfix.patch && \
 #     patch -p1 < nginx_openssl-1.1.x_renegotiation_bugfix.patch && \
+#    curl https://raw.githubusercontent.com/hakasenyang/openssl-patch/master/nginx_hpack_push_fix.patch | patch -p1 && \
     curl https://raw.githubusercontent.com/hakasenyang/openssl-patch/master/nginx_strict-sni_1.15.10.patch | patch -p1  && \
     ./configure --with-openssl=../openssl-OpenSSL_$OPENSSL_VERSION --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module --with-http_image_filter_module --with-threads --with-pcre-jit \
     --with-openssl-opt='enable-weak-ssl-ciphers'\
