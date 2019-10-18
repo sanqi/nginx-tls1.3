@@ -1,0 +1,11 @@
+--- ngx_http_ipdb_module-master/ipdb/ipdb.h	2019-09-22 01:51:18.000000000 +0000
++++ ngx_http_ipdb_module-master/ipdb/ipdb1.h	2019-10-18 11:58:42.503997904 +0000
+@@ -47,6 +47,8 @@
+     unsigned char *data;
+ } ipdb_reader;
+ 
++typedef unsigned char u_char;
++
+ int ipdb_reader_new(const char *file, ipdb_reader **reader);
+ 
+ void ipdb_reader_free(ipdb_reader **reader);

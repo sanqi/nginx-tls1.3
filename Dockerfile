@@ -21,7 +21,10 @@ RUN wget https://github.com/openssl/openssl/archive/OpenSSL_$OPENSSL_VERSION.tar
 #    curl https://raw.githubusercontent.com/hakasenyang/openssl-patch/master/nginx_hpack_push_fix.patch | patch -p1 && \
     curl https://raw.githubusercontent.com/hakasenyang/openssl-patch/master/nginx_strict-sni_1.15.10.patch | patch -p1  && \
     wget https://github.com/vislee/ngx_http_ipdb_module/archive/master.zip && \
-    unzip -x master.zip && \
+    unzip -x master.zip
+COPY ipdb.patch /tmp/nginx-$NGINX_VERSION
+WORKDIR /tmp/nginx-$NGINX_VERSION
+RUN patch -p0 < ipdb.patch && \
     mv ngx_http_ipdb_module-master ngx_http_ipdb_module && \
     ./configure --with-openssl=../openssl-OpenSSL_$OPENSSL_VERSION --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module --with-http_image_filter_module --with-threads --with-pcre-jit \
     --with-openssl-opt='enable-weak-ssl-ciphers'\
