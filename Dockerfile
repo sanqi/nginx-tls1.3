@@ -1,7 +1,7 @@
 FROM golang:alpine
 ENV OPENSSL_VERSION=1_1_1d
 ENV OPENSSL_PATCH=1.1.1d-chacha_draft
-ENV NGINX_VERSION=1.17.4
+ENV NGINX_VERSION=1.17.8
 RUN apk upgrade --update -f && apk add --no-cache wget make gcc g++ perl pcre-dev zlib-dev linux-headers libgd gd-dev libxslt-dev patch libjpeg-turbo-dev libpng-dev curl json-c json-c-dev
 WORKDIR /tmp
 RUN wget https://github.com/openssl/openssl/archive/OpenSSL_$OPENSSL_VERSION.tar.gz && \
