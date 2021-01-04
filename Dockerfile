@@ -19,7 +19,7 @@ RUN wget https://github.com/openssl/openssl/archive/OpenSSL_$OPENSSL_VERSION.tar
 #    wget https://raw.githubusercontent.com/hakasenyang/openssl-patch/master/nginx_openssl-1.1.x_renegotiation_bugfix.patch && \
 #     patch -p1 < nginx_openssl-1.1.x_renegotiation_bugfix.patch && \
 #    curl https://raw.githubusercontent.com/hakasenyang/openssl-patch/master/nginx_hpack_push_fix.patch | patch -p1 && \
-    curl https://raw.githubusercontent.com/hakasenyang/openssl-patch/master/nginx_strict-sni_1.15.10.patch | patch -p1  && \
+    #curl https://raw.githubusercontent.com/hakasenyang/openssl-patch/master/nginx_strict-sni_1.15.10.patch | patch -p1  && \
     wget https://github.com/vislee/ngx_http_ipdb_module/archive/master.zip && \
     unzip -x master.zip
 COPY ipdb.patch /tmp/nginx-$NGINX_VERSION
